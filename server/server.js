@@ -13,13 +13,19 @@ const app = express();
 connectDB();
 
 // CORS
-app.use(cors({
+const corsOptions = {
   origin: [
     "http://localhost:5173",
     "https://devcollab-frontend-three.vercel.app"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
-}));
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // allow preflight
+
 
 app.use(express.json());
 
