@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 
 router.use('/auth', require('./authRoutes'));
 router.use('/workspaces', require('./workspaceRoutes'));
