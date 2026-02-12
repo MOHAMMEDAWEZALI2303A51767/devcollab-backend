@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const { workspaceController } = require('../controllers');
 const { auth, createWorkspaceValidation, inviteMemberValidation } = require('../middleware');
 
