@@ -86,9 +86,15 @@ userSchema.pre('save', async function (next) {
 
 // Compare password method
 userSchema.methods.comparePassword = async function (candidatePassword) {
-  if (!this.password) return false;
-  return await bcrypt.compare(candidatePassword, this.password);
+  try {
+    if (!this.password) return false;
+    return await bcrypt.compare(candidatePassword, this.password);
+  } catch (err) {
+    console.error("Password compare error:", err);
+    return false;
+  }
 };
+
 
 // Remove sensitive fields from JSON output
 userSchema.methods.toJSON = function () {
